@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Inicio</title>
@@ -8,15 +8,19 @@
 </head>
 <body>
 
-<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="navbar" >
     <div class="container-fluid">
         <a class="navbar-brand" href="#">LAB 3</a>
-        <a class="nav-link" th:href="@{/hospital}">Hospital</a>
-        <a class="nav-link" th:href="@{/doctores}">Doctores</a>
+        <a href="hospital.html" class="nav-link">Hospital</a>
+        <a th:href="@{/doctores}" class="nav-link" >Doctores</a>
         <a class="nav-link" th:href="@{/pacientes}">Pacientes</a>
         </div>
     </div>
 </nav>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
