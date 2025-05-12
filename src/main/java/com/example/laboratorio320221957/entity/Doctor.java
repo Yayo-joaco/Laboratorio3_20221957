@@ -1,4 +1,5 @@
 package com.example.laboratorio320221957.entity;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -6,24 +7,42 @@ import jakarta.persistence.*;
 public class Doctor {
 
     @Id
-    @Column(name = "id")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     private String nombre;
     private String especialidad;
-    @Id
-    @Column(name = "hospital_id")
-    private Integer hospitalID;
-    private String countryName;
 
-    public Doctor() {}
+    @ManyToOne
+    @JoinColumn(name = "hospital_id")
+    private Hospital hospital;
 
-    public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
 
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
-    public String getEspecialidad() { return especialidad; }
-    public void setEspecialidad(String especialidad) { this.especialidad = especialidad; }
-    public Integer getHospitalId() { return hospitalID; }
-    public void setHospitalId(Integer hospitalId) { this.hospitalID = hospitalId; }
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getEspecialidad() {
+        return especialidad;
+    }
+    public void setEpecialidad(String especialidad) {
+        this.especialidad = especialidad;
+    }
+
+    public Hospital getHospital() {
+        return hospital;
+    }
+    public void setHospital(Hospital hospital) {
+        this.hospital = hospital;
+    }
 }

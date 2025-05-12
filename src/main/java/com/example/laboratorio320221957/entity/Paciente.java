@@ -1,46 +1,63 @@
 package com.example.laboratorio320221957.entity;
+
 import jakarta.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "paciente")
 public class Paciente {
 
     @Id
-    @Column(name = "id")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     private String nombre;
     private Integer edad;
     private String genero;
     private String diagnostico;
-    private String fechaCita;
+
+    @Column(name = "fecha_cita")
+    private LocalDate fechaCita;
+
+    @Column(name = "numero_habitacion")
     private Integer numeroHabitacion;
-    @Id
-    @Column(name = "doctor_id")
-    private String doctorID;
-    @Id
-    @Column(name = "hospital_id")
-    private String hospitalID;
+
+    @ManyToOne
+    @JoinColumn(name = "doctor_id")
+    private Doctor doctor;
+
+    @ManyToOne
+    @JoinColumn(name = "hospital_id")
+    private Hospital hospital;
 
     public Paciente() {}
 
-    public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
+
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
 
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
+
     public Integer getEdad() { return edad; }
     public void setEdad(Integer edad) { this.edad = edad; }
+
     public String getGenero() { return genero; }
     public void setGenero(String genero) { this.genero = genero; }
+
     public String getDiagnostico() { return diagnostico; }
     public void setDiagnostico(String diagnostico) { this.diagnostico = diagnostico; }
-    public String getFechaCita() { return fechaCita; }
-    public void setFechaCita(String fechaCita) { this.fechaCita = fechaCita; }
+
+    public LocalDate getFechaCita() { return fechaCita; }
+    public void setFechaCita(LocalDate fechaCita) { this.fechaCita = fechaCita; }
+
     public Integer getNumeroHabitacion() { return numeroHabitacion; }
     public void setNumeroHabitacion(Integer numeroHabitacion) { this.numeroHabitacion = numeroHabitacion; }
-    public String getDoctorID() { return doctorID; }
-    public void setDoctorID(String doctorID) { this.doctorID = doctorID; }
-    public String getHospitalID() { return hospitalID; }
-    public void setHospitalID(String hospitalID) { this.hospitalID = hospitalID; }
 
+
+    public Doctor getDoctor() { return doctor; }
+    public void setDoctor(Doctor doctor) { this.doctor = doctor; }
+
+    public Hospital getHospital() { return hospital; }
+    public void setHospital(Hospital hospital) { this.hospital = hospital; }
 }
