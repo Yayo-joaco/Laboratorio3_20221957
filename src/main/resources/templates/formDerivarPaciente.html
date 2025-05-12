@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Derivar Pacientes</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div th:replace="index :: navbarFragment"></div>
+
+<div class="container mt-5">
+  <h2 class="mt-4">Derivar Paciente</h2>
+
+  <form th:action="@{/pacientes/derivar}" method="post">
+
+    <div class="mb-3">
+      <label for="doctorOrigen" class="form-label">Derivar del doctor:</label>
+      <select id="doctorOrigen" name="doctorOrigenId" class="form-select" required>
+        <option value="">-- Seleccione un doctor --</option>
+        <option th:each="doctor : ${listaDoctores}"
+                th:value="${doctor.id}"
+                th:text="${doctor.nombre}">Dr. Nombre Doctor Origen</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="doctorDestino" class="form-label">Al doctor:</label>
+      <select id="doctorDestino" name="doctorDestinoId" class="form-select" required>
+        <option value="">-- Seleccione un doctor --</option>
+        <option th:each="doctor : ${listaDoctores}"
+                th:value="${doctor.id}"
+                th:text="${doctor.nombre}">Dr. Nombre Doctor Destino</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Derivar</button>
+    <a th:href="@{/pacientes}" class="btn btn-secondary">Cancelar</a>
+
+  </form>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
